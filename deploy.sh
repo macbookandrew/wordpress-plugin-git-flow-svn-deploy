@@ -9,18 +9,22 @@ echo
 echo "Default values are in brackets - just hit enter to accept them."
 echo
 
+# Set default pluginslug
+default_pluginslug="plugin-slug"
+
 # Get some user input
 # Can't use the -i flag for read, since that doesn't work for bash 3
-printf "1a) WordPress Repo Plugin Slug e.g. my-awesome-plugin: "
-read -e PLUGINSLUG
+printf "1a) WordPress Repo Plugin Slug ($default_pluginslug): "
+read -e input
+PLUGINSLUG="${input:-$default_pluginslug}" # Populate with default if empty
 echo
 
 # Set up some default values. Feel free to change these in your own script
 CURRENTDIR=`pwd`
 default_svnpath="/tmp/$PLUGINSLUG"
 default_svnurl="http://plugins.svn.wordpress.org/$PLUGINSLUG"
-default_svnuser="GaryJ"
-default_plugindir="$CURRENTDIR/$PLUGINSLUG"
+default_svnuser="macbookandrew"
+default_plugindir="$CURRENTDIR"
 default_mainfile="$PLUGINSLUG.php"
 
 echo "1b) Path to a local directory where a temporary SVN checkout can be made."
